@@ -1,6 +1,6 @@
 # InferlexAI Website
 
-Static GitHub Pages landing page for `inferlexai.com`.
+Static GitHub Pages landing page for `www.inferlexai.com`.
 
 ## Video Assets
 
@@ -19,5 +19,5 @@ The HTML already uses semantic looping, muted, inline `<video>` elements for eac
 GitHub Pages should serve the repository root on the `main` branch. The `CNAME` file must contain only:
 
 ```text
-inferlexai.com
+www.inferlexai.com
 ```
