@@ -20,6 +20,7 @@ const flowImageByLang = {
 
 const translations = {
   en: {
+    "brand.name": "InferlexAI",
     "a11y.skip": "Skip to content",
     "nav.introduction": "Introduction",
     "nav.services": "Services",
@@ -80,6 +81,7 @@ const translations = {
     "footer.copy": "All rights reserved."
   },
   "zh-CN": {
+    "brand.name": "英智元",
     "a11y.skip": "跳转到主要内容",
     "nav.introduction": "介绍",
     "nav.services": "服务",
@@ -140,6 +142,7 @@ const translations = {
     "footer.copy": "保留所有权利。"
   },
   "zh-TW": {
+    "brand.name": "英智元",
     "a11y.skip": "跳至主要內容",
     "nav.introduction": "介紹",
     "nav.services": "服務",
@@ -226,7 +229,11 @@ const revealInPanel = (panel) => {
 
 const setActivePage = (route, updateHash = true) => {
   const target = pagePanels.find((panel) => panel.dataset.page === route) || pagePanels[0];
-  pagePanels.forEach((panel) => panel.classList.toggle("is-active", panel === target));
+  pagePanels.forEach((panel) => {
+    const active = panel === target;
+    panel.classList.toggle("is-active", active);
+    panel.hidden = !active;
+  });
   navRouteButtons.forEach((button) => {
     const active = button.dataset.route === target.dataset.page;
     button.classList.toggle("is-active", active);

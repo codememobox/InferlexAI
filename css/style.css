@@ -223,12 +223,12 @@ h3 {
 }
 
 .nav-link {
-  border: 1px solid transparent;
-  border-radius: 999px;
-  padding: 0.48rem 0.9rem;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
   background: transparent;
   color: var(--muted);
-  font-size: 0.83rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
 }
@@ -237,8 +237,7 @@ h3 {
 .nav-link:hover,
 .nav-link:focus-visible {
   color: var(--text);
-  border-color: var(--line);
-  background: rgba(255, 255, 255, 0.07);
+  background: transparent;
 }
 
 .language-picker {
@@ -249,12 +248,19 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text);
-  padding: 0.42rem 0.75rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible {
+  color: var(--text);
 }
 
 .language-menu {
@@ -262,7 +268,7 @@ h3 {
   right: 0;
   top: calc(100% + 0.45rem);
   display: none;
-  min-width: 140px;
+  min-width: 146px;
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
@@ -317,6 +323,10 @@ h3 {
 .page-panel.is-active {
   display: block;
   animation: fadeIn 260ms ease;
+}
+
+.page-panel[hidden] {
+  display: none !important;
 }
 
 @keyframes fadeIn {
