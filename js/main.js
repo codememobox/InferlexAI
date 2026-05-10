@@ -313,6 +313,26 @@ const revealInPanel = (panel) => {
   });
 };
 
+const hydratePanelVideos = (panel) => {
+  const videos = Array.from(panel.querySelectorAll("video"));
+  videos.forEach((video) => {
+    if (!(video instanceof HTMLVideoElement)) return;
+    video.muted = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.preload = "metadata";
+    if (video.readyState < 1) {
+      video.load();
+    }
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        video.controls = true;
+      });
+    }
+  });
+};
+
 const setActivePage = (route, updateHash = true) => {
   const target = pagePanels.find((panel) => panel.dataset.page === route) || pagePanels[0];
   pagePanels.forEach((panel) => {
@@ -326,6 +346,7 @@ const setActivePage = (route, updateHash = true) => {
     button.setAttribute("aria-current", active ? "page" : "false");
   });
   revealInPanel(target);
+  hydratePanelVideos(target);
   window.scrollTo({ top: 0, behavior: "smooth" });
   if (updateHash) {
     window.location.hash = target.dataset.page;
