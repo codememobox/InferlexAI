@@ -4,10 +4,16 @@ const navLinksWrapper = document.querySelector("[data-nav-links]");
 const navRouteButtons = Array.from(document.querySelectorAll("[data-route]"));
 const pagePanels = Array.from(document.querySelectorAll("[data-page]"));
 const quickJumpButtons = Array.from(document.querySelectorAll("[data-go-page]"));
+const openContactButtons = Array.from(document.querySelectorAll("[data-open-contact]"));
+const closeContactButtons = Array.from(document.querySelectorAll("[data-close-contact]"));
+const contactModal = document.querySelector("[data-contact-modal]");
+const contactForm = document.querySelector("[data-contact-form]");
+const submitButton = document.querySelector("[data-submit-btn]");
+const formStatus = document.querySelector("[data-form-status]");
+const i18nPlaceholderNodes = Array.from(document.querySelectorAll("[data-i18n-placeholder]"));
 const year = document.querySelector("[data-year]");
 const languagePicker = document.querySelector("[data-language-picker]");
 const languageToggle = document.querySelector("[data-language-toggle]");
-const languageMenu = document.querySelector("[data-language-menu]");
 const languageOptions = Array.from(document.querySelectorAll("[data-lang-option]"));
 const currentLanguageLabel = document.querySelector("[data-current-language]");
 const flowImage = document.querySelector("[data-flow-image]");
@@ -17,6 +23,9 @@ const flowImageByLang = {
   "zh-CN": "assets/images/flow-chn-simple.png",
   "zh-TW": "assets/images/flow-chn-complex.png"
 };
+
+let currentLanguage = "en";
+let recaptchaToken = "";
 
 const translations = {
   en: {
@@ -78,7 +87,26 @@ const translations = {
     "contact.eyebrow": "Build with InferlexAI",
     "contact.title": "Ready to turn AI strategy into operational software?",
     "contact.copy": "Partner with a team built for enterprise-grade AI products, from first architecture session to secure deployment on your production stack.",
-    "footer.copy": "All rights reserved."
+    "footer.copy": "All rights reserved.",
+    "form.title": "Contact Us",
+    "form.name": "Name*",
+    "form.email": "Email*",
+    "form.mobile": "Mobile",
+    "form.titleLabel": "Title",
+    "form.company": "Company",
+    "form.message": "Message*",
+    "form.submit": "Submit",
+    "form.namePh": "Name*",
+    "form.emailPh": "Email*",
+    "form.mobilePh": "Mobile",
+    "form.titlePh": "Title",
+    "form.companyPh": "Company",
+    "form.messagePh": "Message*",
+    "form.statusNeedCaptcha": "Please complete the \"I'm not a robot\" test.",
+    "form.statusMissing": "Please fill in all required fields.",
+    "form.statusSending": "Sending...",
+    "form.statusSuccess": "Thanks. Your message has been sent successfully.",
+    "form.statusError": "Send failed. Please try again in a moment."
   },
   "zh-CN": {
     "brand.name": "英智元",
@@ -136,10 +164,29 @@ const translations = {
     "outcomes.m5Label": "聚焦高价值 KPI 的试点更易形成可衡量回报。",
     "outcomes.m6Value": "预测准确率提升 5-12%",
     "outcomes.m6Label": "统一 BI 数据栈增强营收、需求与风险预测质量。",
-    "contact.eyebrow": "与 InferlexAI 共建",
+    "contact.eyebrow": "与英智元共建",
     "contact.title": "准备把 AI 战略变成真实生产系统了吗？",
     "contact.copy": "从首轮架构工作坊到生产部署，我们为你提供企业级 AI 产品化交付团队。",
-    "footer.copy": "保留所有权利。"
+    "footer.copy": "保留所有权利。",
+    "form.title": "联系我们",
+    "form.name": "姓名*",
+    "form.email": "邮箱*",
+    "form.mobile": "手机",
+    "form.titleLabel": "职位",
+    "form.company": "公司",
+    "form.message": "留言*",
+    "form.submit": "提交",
+    "form.namePh": "姓名*",
+    "form.emailPh": "邮箱*",
+    "form.mobilePh": "手机",
+    "form.titlePh": "职位",
+    "form.companyPh": "公司",
+    "form.messagePh": "请输入需求内容*",
+    "form.statusNeedCaptcha": "请先完成“我不是机器人”验证。",
+    "form.statusMissing": "请填写所有必填项。",
+    "form.statusSending": "正在发送...",
+    "form.statusSuccess": "感谢提交，信息已成功发送。",
+    "form.statusError": "发送失败，请稍后重试。"
   },
   "zh-TW": {
     "brand.name": "英智元",
@@ -197,17 +244,56 @@ const translations = {
     "outcomes.m5Label": "聚焦高價值 KPI 的試點更容易形成可衡量回報。",
     "outcomes.m6Value": "預測準確率提升 5-12%",
     "outcomes.m6Label": "統一 BI 資料棧提升營收、需求與風險預測品質。",
-    "contact.eyebrow": "與 InferlexAI 共建",
+    "contact.eyebrow": "與英智元共建",
     "contact.title": "準備把 AI 策略轉化為實際生產系統了嗎？",
     "contact.copy": "從第一場架構工作坊到上線部署，我們提供企業級 AI 產品化交付團隊。",
-    "footer.copy": "版權所有。"
+    "footer.copy": "版權所有。",
+    "form.title": "聯絡我們",
+    "form.name": "姓名*",
+    "form.email": "電郵*",
+    "form.mobile": "手機",
+    "form.titleLabel": "職稱",
+    "form.company": "公司",
+    "form.message": "訊息*",
+    "form.submit": "提交",
+    "form.namePh": "姓名*",
+    "form.emailPh": "電郵*",
+    "form.mobilePh": "手機",
+    "form.titlePh": "職稱",
+    "form.companyPh": "公司",
+    "form.messagePh": "請輸入需求內容*",
+    "form.statusNeedCaptcha": "請先完成「我不是機器人」驗證。",
+    "form.statusMissing": "請填寫所有必填欄位。",
+    "form.statusSending": "正在傳送...",
+    "form.statusSuccess": "感謝提交，訊息已成功送出。",
+    "form.statusError": "傳送失敗，請稍後再試。"
   }
 };
 
+const recipientChars = [99, 111, 100, 101, 46, 109, 101, 109, 111, 46, 98, 111, 120, 43, 105, 110, 102, 101, 114, 108, 101, 120, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109];
+const recipientEmail = String.fromCharCode(...recipientChars);
+
 const currentYear = new Date().getFullYear();
-if (year) {
-  year.textContent = String(currentYear);
-}
+if (year) year.textContent = String(currentYear);
+
+const t = (key) => {
+  const dictionary = translations[currentLanguage] || translations.en;
+  return dictionary[key] || translations.en[key] || "";
+};
+
+const setFormStatus = (key, state = "") => {
+  if (!formStatus) return;
+  formStatus.textContent = t(key);
+  formStatus.classList.remove("is-success", "is-error");
+  if (state) {
+    formStatus.classList.add(state);
+  }
+};
+
+const updateSubmitState = () => {
+  if (!submitButton) return;
+  submitButton.disabled = recaptchaToken.length === 0;
+};
 
 const closeMobileMenu = () => {
   if (!navToggle || !navLinksWrapper) return;
@@ -248,30 +334,61 @@ const setActivePage = (route, updateHash = true) => {
 };
 
 const applyLanguage = (lang) => {
-  const chosen = translations[lang] ? lang : "en";
-  const dictionary = translations[chosen];
+  currentLanguage = translations[lang] ? lang : "en";
   i18nNodes.forEach((node) => {
     const key = node.dataset.i18n;
     if (!key) return;
-    const text = dictionary[key];
-    if (typeof text !== "string") return;
-    node.textContent = text;
+    node.textContent = t(key);
+  });
+  i18nPlaceholderNodes.forEach((node) => {
+    const key = node.dataset.i18nPlaceholder;
+    if (!(node instanceof HTMLInputElement || node instanceof HTMLTextAreaElement)) return;
+    if (!key) return;
+    node.placeholder = t(key);
   });
   if (flowImage) {
-    flowImage.src = flowImageByLang[chosen];
-    flowImage.alt = dictionary["approach.flowCaption"];
+    flowImage.src = flowImageByLang[currentLanguage];
+    flowImage.alt = t("approach.flowCaption");
   }
   if (currentLanguageLabel) {
-    currentLanguageLabel.textContent = chosen === "en" ? "EN" : chosen === "zh-CN" ? "简体" : "繁體";
+    currentLanguageLabel.textContent = currentLanguage === "en" ? "EN" : currentLanguage === "zh-CN" ? "简体" : "繁體";
   }
-  document.documentElement.lang = chosen;
-  localStorage.setItem("inferlexai_lang", chosen);
+  document.documentElement.lang = currentLanguage;
+  localStorage.setItem("inferlexai_lang", currentLanguage);
 };
 
 const closeLanguageMenu = () => {
   if (!languagePicker || !languageToggle) return;
   languagePicker.classList.remove("is-open");
   languageToggle.setAttribute("aria-expanded", "false");
+};
+
+const openContactModal = () => {
+  if (!contactModal) return;
+  contactModal.classList.add("is-open");
+  contactModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("nav-open");
+};
+
+const closeContactModal = () => {
+  if (!contactModal) return;
+  contactModal.classList.remove("is-open");
+  contactModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("nav-open");
+};
+
+window.inferlexaiRecaptchaDone = (token) => {
+  recaptchaToken = token || "";
+  updateSubmitState();
+  if (formStatus) {
+    formStatus.textContent = "";
+    formStatus.classList.remove("is-success", "is-error");
+  }
+};
+
+window.inferlexaiRecaptchaExpired = () => {
+  recaptchaToken = "";
+  updateSubmitState();
 };
 
 syncHeader();
@@ -302,6 +419,14 @@ quickJumpButtons.forEach((button) => {
   });
 });
 
+openContactButtons.forEach((button) => {
+  button.addEventListener("click", openContactModal);
+});
+
+closeContactButtons.forEach((button) => {
+  button.addEventListener("click", closeContactModal);
+});
+
 if (languageToggle && languagePicker) {
   languageToggle.addEventListener("click", () => {
     const isOpen = languagePicker.classList.toggle("is-open");
@@ -318,6 +443,64 @@ languageOptions.forEach((option) => {
   });
 });
 
+if (contactForm) {
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+    const requiredName = (formData.get("name") || "").toString().trim();
+    const requiredEmail = (formData.get("email") || "").toString().trim();
+    const requiredMessage = (formData.get("message") || "").toString().trim();
+
+    if (!requiredName || !requiredEmail || !requiredMessage) {
+      setFormStatus("form.statusMissing", "is-error");
+      return;
+    }
+    if (!recaptchaToken) {
+      setFormStatus("form.statusNeedCaptcha", "is-error");
+      return;
+    }
+
+    setFormStatus("form.statusSending");
+    if (submitButton) submitButton.disabled = true;
+
+    const payload = {
+      name: requiredName,
+      email: requiredEmail,
+      mobile: (formData.get("mobile") || "").toString().trim(),
+      title: (formData.get("title") || "").toString().trim(),
+      company: (formData.get("company") || "").toString().trim(),
+      message: requiredMessage,
+      language: currentLanguage,
+      _subject: `[InferlexAI Contact] ${requiredName} (${currentLanguage})`,
+      _captcha: "false",
+      _template: "table",
+      "g-recaptcha-response": recaptchaToken
+    };
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== "true") {
+        throw new Error("Form submit failed");
+      }
+      setFormStatus("form.statusSuccess", "is-success");
+      contactForm.reset();
+      recaptchaToken = "";
+      if (window.grecaptcha) {
+        window.grecaptcha.reset();
+      }
+    } catch (_error) {
+      setFormStatus("form.statusError", "is-error");
+    } finally {
+      updateSubmitState();
+    }
+  });
+}
+
 document.addEventListener("click", (event) => {
   const target = event.target;
   if (!(target instanceof HTMLElement)) return;
@@ -326,8 +509,16 @@ document.addEventListener("click", (event) => {
   }
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeLanguageMenu();
+    closeContactModal();
+  }
+});
+
 const initialLanguage = localStorage.getItem("inferlexai_lang") || "en";
 applyLanguage(initialLanguage);
+updateSubmitState();
 
 const hashPage = window.location.hash.replace("#", "");
 setActivePage(hashPage || "introduction", false);

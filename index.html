@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; media-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com https://www.gstatic.com; style-src 'self'; img-src 'self' data: https:; media-src 'self'; font-src 'self'; connect-src 'self' https://formsubmit.co https://www.google.com https://www.gstatic.com; frame-src https://www.google.com https://www.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -70,7 +70,7 @@
           <h1 data-i18n="intro.heroTitle">AI systems engineered for measurable enterprise advantage.</h1>
           <p class="hero-copy" data-i18n="intro.heroCopy">InferlexAI designs agentic workflows, industrial intelligence platforms, and bespoke AI software that move from executive strategy to production-grade deployment.</p>
           <div class="hero-actions" aria-label="Primary calls to action">
-            <a class="button button-primary" href="mailto:partnerships@inferlexai.com" data-i18n="common.partner">Partner with Us</a>
+            <button class="button button-primary" type="button" data-open-contact data-i18n="common.partner">Partner with Us</button>
             <button class="button button-ghost" type="button" data-go-page="services" data-i18n="common.explore">Explore Our Solutions</button>
           </div>
         </div>
@@ -206,17 +206,70 @@
           <p class="eyebrow" data-i18n="contact.eyebrow">Build with InferlexAI</p>
           <h2 data-i18n="contact.title">Ready to turn AI strategy into operational software?</h2>
           <p data-i18n="contact.copy">Partner with a team built for enterprise-grade AI products, from first architecture session to secure deployment on your production stack.</p>
-          <a class="button button-primary" href="mailto:partnerships@inferlexai.com" data-i18n="common.partner">Partner with Us</a>
+          <button class="button button-primary" type="button" data-open-contact data-i18n="common.partner">Partner with Us</button>
         </div>
       </section>
     </section>
   </main>
+
+  <div class="modal-shell" data-contact-modal aria-hidden="true">
+    <div class="modal-backdrop" data-close-contact></div>
+    <section class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+      <header class="contact-modal-head">
+        <h3 id="contact-modal-title" data-i18n="form.title">Contact Us</h3>
+        <button type="button" class="contact-close" aria-label="Close dialog" data-close-contact>&times;</button>
+      </header>
+      <form class="contact-form" data-contact-form novalidate>
+        <label class="field">
+          <span data-i18n="form.name">Name*</span>
+          <input type="text" name="name" required autocomplete="name" data-i18n-placeholder="form.namePh" placeholder="Name*">
+        </label>
+        <label class="field">
+          <span data-i18n="form.email">Email*</span>
+          <input type="email" name="email" required autocomplete="email" data-i18n-placeholder="form.emailPh" placeholder="Email*">
+        </label>
+        <label class="field">
+          <span data-i18n="form.mobile">Mobile</span>
+          <input type="tel" name="mobile" autocomplete="tel" data-i18n-placeholder="form.mobilePh" placeholder="Mobile">
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span data-i18n="form.titleLabel">Title</span>
+            <input type="text" name="title" autocomplete="organization-title" data-i18n-placeholder="form.titlePh" placeholder="Title">
+          </label>
+          <label class="field">
+            <span data-i18n="form.company">Company</span>
+            <input type="text" name="company" autocomplete="organization" data-i18n-placeholder="form.companyPh" placeholder="Company">
+          </label>
+        </div>
+        <label class="field">
+          <span data-i18n="form.message">Message*</span>
+          <textarea name="message" rows="5" required data-i18n-placeholder="form.messagePh" placeholder="Message*"></textarea>
+        </label>
+
+        <div class="form-meta">
+          <div class="recaptcha-wrap">
+            <div
+              class="g-recaptcha"
+              data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+              data-callback="inferlexaiRecaptchaDone"
+              data-expired-callback="inferlexaiRecaptchaExpired"
+              data-error-callback="inferlexaiRecaptchaExpired"
+            ></div>
+          </div>
+          <button class="button button-primary submit-btn" type="submit" data-submit-btn disabled data-i18n="form.submit">Submit</button>
+        </div>
+        <p class="form-status" data-form-status></p>
+      </form>
+    </section>
+  </div>
 
   <footer class="site-footer">
     <p><span data-i18n="footer.copy">All rights reserved.</span> &copy; <span data-year>2026</span> InferlexAI.</p>
     <a href="https://www.inferlexai.com">www.inferlexai.com</a>
   </footer>
 
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="js/main.js"></script>
 </body>
 </html>

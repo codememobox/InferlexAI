@@ -608,6 +608,131 @@ h3 {
   font-size: 1.12rem;
 }
 
+/* ===== Contact Modal ===== */
+.modal-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: none;
+}
+
+.modal-shell.is-open {
+  display: block;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 4, 9, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.contact-modal {
+  position: relative;
+  width: min(920px, calc(100% - 2rem));
+  max-height: calc(100svh - 2rem);
+  overflow: auto;
+  margin: 1rem auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(8, 12, 22, 0.98);
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+}
+
+.contact-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.contact-modal-head h3 {
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+.contact-close {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 0.78rem 0.88rem;
+  outline: none;
+}
+
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: rgba(113, 217, 255, 0.6);
+  box-shadow: 0 0 0 2px rgba(113, 217, 255, 0.14);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.form-meta {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.3rem;
+}
+
+.submit-btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.form-status {
+  min-height: 1.3rem;
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.form-status.is-success {
+  color: #96f5bf;
+}
+
+.form-status.is-error {
+  color: #ff9aa4;
+}
+
 /* ===== Footer ===== */
 .site-footer {
   display: flex;
@@ -720,6 +845,20 @@ h3 {
 
   .button {
     width: 100%;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-meta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .recaptcha-wrap {
+    max-width: 100%;
+    overflow-x: auto;
   }
 }
 
