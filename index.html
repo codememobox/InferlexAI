@@ -19,7 +19,7 @@
   <title>InferlexAI | Bespoke AI Systems for Enterprise Transformation</title>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
 
   <header class="site-header" data-header>
     <nav class="nav-shell" aria-label="Primary navigation">
@@ -27,158 +27,193 @@
         <span class="brand-mark">IX</span>
         <span>InferlexAI</span>
       </a>
+
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" data-nav-toggle>
         <span class="sr-only">Toggle navigation</span>
         <span></span>
         <span></span>
       </button>
-      <ul class="nav-links" id="primary-menu" data-nav-links>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#outcomes">Outcomes</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+
+      <div class="nav-right" id="primary-menu" data-nav-links>
+        <ul class="nav-links">
+          <li><button class="nav-link is-active" type="button" data-route="introduction" data-i18n="nav.introduction">Introduction</button></li>
+          <li><button class="nav-link" type="button" data-route="services" data-i18n="nav.services">Services</button></li>
+          <li><button class="nav-link" type="button" data-route="approach" data-i18n="nav.approach">Approach</button></li>
+          <li><button class="nav-link" type="button" data-route="outcomes" data-i18n="nav.outcomes">Outcomes</button></li>
+          <li><button class="nav-link" type="button" data-route="contact" data-i18n="nav.contact">Contact</button></li>
+        </ul>
+        <div class="language-picker" data-language-picker>
+          <button class="language-toggle" type="button" aria-expanded="false" aria-haspopup="true" data-language-toggle>
+            <span aria-hidden="true">🌐</span>
+            <span data-current-language>EN</span>
+          </button>
+          <div class="language-menu" data-language-menu>
+            <button type="button" data-lang-option="en">EN</button>
+            <button type="button" data-lang-option="zh-CN">简体中文</button>
+            <button type="button" data-lang-option="zh-TW">繁體中文</button>
+          </div>
+        </div>
+      </div>
     </nav>
   </header>
 
-  <main id="main">
-    <section class="hero section-pad">
-      <video class="hero-video" autoplay loop muted playsinline aria-hidden="true">
-        <source src="assets/videos/hero.mp4" type="video/mp4">
-        Add your AI-generated hero video at assets/videos/hero.mp4.
-      </video>
-      <div class="hero-overlay"></div>
-      <div class="hero-content reveal">
-        <p class="eyebrow">Enterprise AI consulting for high-stakes operators</p>
-        <h1>AI systems engineered for measurable enterprise advantage.</h1>
-        <p class="hero-copy">InferlexAI designs agentic workflows, industrial intelligence platforms, and bespoke AI software that move from executive strategy to production-grade deployment.</p>
-        <div class="hero-actions" aria-label="Primary calls to action">
-          <a class="button button-primary" href="mailto:partnerships@inferlexai.com">Partner with Us</a>
-          <a class="button button-ghost" href="#services">Explore Our Solutions</a>
+  <main id="main" class="page-shell">
+    <section class="page-panel is-active" data-page="introduction">
+      <section class="hero section-pad">
+        <video class="hero-video" autoplay loop muted playsinline aria-hidden="true">
+          <source src="assets/videos/hero.mp4" type="video/mp4">
+          Add your AI-generated hero video at assets/videos/hero.mp4.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+          <p class="eyebrow" data-i18n="intro.heroEyebrow">Enterprise AI consulting for high-stakes operators</p>
+          <h1 data-i18n="intro.heroTitle">AI systems engineered for measurable enterprise advantage.</h1>
+          <p class="hero-copy" data-i18n="intro.heroCopy">InferlexAI designs agentic workflows, industrial intelligence platforms, and bespoke AI software that move from executive strategy to production-grade deployment.</p>
+          <div class="hero-actions" aria-label="Primary calls to action">
+            <a class="button button-primary" href="mailto:partnerships@inferlexai.com" data-i18n="common.partner">Partner with Us</a>
+            <button class="button button-ghost" type="button" data-go-page="services" data-i18n="common.explore">Explore Our Solutions</button>
+          </div>
         </div>
-      </div>
-      <div class="hero-panel reveal" aria-label="InferlexAI operating model">
-        <span class="panel-kicker">Operating model</span>
-        <strong>Strategy, data, agents, and deployment in one integrated delivery loop.</strong>
-        <p>From pilot architecture to production governance, every engagement is shaped around adoption, security, and business impact.</p>
-      </div>
-    </section>
-
-    <section class="section-pad intro-grid" aria-labelledby="company-profile">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Company profile</p>
-        <h2 id="company-profile">Premium AI transformation for complex organizations.</h2>
-      </div>
-      <p class="intro-copy reveal">InferlexAI partners with enterprise teams to build end-to-end AI pipelines, customized LLM copilots, and decision intelligence products. Our work combines product-grade engineering with the boardroom clarity expected from top-tier consulting.</p>
-    </section>
-
-    <section class="section-pad services" id="services" aria-labelledby="services-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Services</p>
-        <h2 id="services-title">Focused practices for AI-powered operating leverage.</h2>
-      </div>
-
-      <div class="service-grid">
-        <article class="service-card reveal">
-          <video autoplay loop muted playsinline aria-hidden="true">
-            <source src="assets/videos/industrial-ai.mp4" type="video/mp4">
-            Add your industrial AI service video at assets/videos/industrial-ai.mp4.
-          </video>
-          <div class="service-content">
-            <span>01</span>
-            <h3>Industrial AI &amp; Smart Manufacturing</h3>
-            <p>Custom coding agents for machine tools, production line optimization, predictive maintenance, and machine learning systems that strengthen supply chain resilience.</p>
-          </div>
-        </article>
-
-        <article class="service-card reveal">
-          <video autoplay loop muted playsinline aria-hidden="true">
-            <source src="assets/videos/enterprise-bi.mp4" type="video/mp4">
-            Add your enterprise BI service video at assets/videos/enterprise-bi.mp4.
-          </video>
-          <div class="service-content">
-            <span>02</span>
-            <h3>Enterprise Intelligence &amp; BI</h3>
-            <p>Executive dashboards, predictive revenue visualization, real-time market analytics, and modernized data infrastructure for faster leadership decisions.</p>
-          </div>
-        </article>
-
-        <article class="service-card reveal">
-          <video autoplay loop muted playsinline aria-hidden="true">
-            <source src="assets/videos/agentic-workflows.mp4" type="video/mp4">
-            Add your agentic workflows video at assets/videos/agentic-workflows.mp4.
-          </video>
-          <div class="service-content">
-            <span>03</span>
-            <h3>Agentic Workflows &amp; Workforce Optimization</h3>
-            <p>AI-driven resource allocation, back-office automation, employee management intelligence, and customized LLM copilots integrated across the enterprise.</p>
-          </div>
-        </article>
-
-        <article class="service-card reveal">
-          <video autoplay loop muted playsinline aria-hidden="true">
-            <source src="assets/videos/custom-ai-engineering.mp4" type="video/mp4">
-            Add your custom AI engineering video at assets/videos/custom-ai-engineering.mp4.
-          </video>
-          <div class="service-content">
-            <span>04</span>
-            <h3>Custom AI Software Engineering</h3>
-            <p>Secure RAG systems for proprietary corporate data and scalable AI applications delivered from prototype through production deployment.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section-pad approach" id="approach" aria-labelledby="approach-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Approach</p>
-        <h2 id="approach-title">From strategic ambition to deployed AI capability.</h2>
-      </div>
-      <div class="process-grid">
-        <article class="process-card reveal">
-          <span>Discover</span>
-          <h3>Map enterprise leverage points</h3>
-          <p>We identify workflows, data assets, and decision cycles where AI can produce measurable operational or revenue impact.</p>
-        </article>
-        <article class="process-card reveal">
-          <span>Design</span>
-          <h3>Architect secure AI systems</h3>
-          <p>We define the data architecture, agent behavior, governance controls, and user experience before build work begins.</p>
-        </article>
-        <article class="process-card reveal">
-          <span>Deploy</span>
-          <h3>Ship production-grade software</h3>
-          <p>We move beyond demos with hardened frontends, scalable pipelines, observability, and change management for adoption.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section-pad outcomes" id="outcomes" aria-labelledby="outcomes-title">
-      <div class="outcomes-card reveal">
-        <div>
-          <p class="eyebrow">Business outcomes</p>
-          <h2 id="outcomes-title">AI initiatives that leadership can measure.</h2>
+        <div class="hero-panel reveal" aria-label="InferlexAI operating model">
+          <span class="panel-kicker" data-i18n="intro.panelKicker">Operating model</span>
+          <strong data-i18n="intro.panelTitle">Strategy, data, agents, and deployment in one integrated delivery loop.</strong>
+          <p data-i18n="intro.panelCopy">From pilot architecture to production governance, every engagement is shaped around adoption, security, and business impact.</p>
         </div>
-        <ul class="metric-list" aria-label="Representative business outcomes">
-          <li><strong>Faster decisions</strong><span>Live intelligence layers for executive teams.</span></li>
-          <li><strong>Higher resilience</strong><span>Predictive systems for production and supply chain risk.</span></li>
-          <li><strong>Lower manual load</strong><span>Agentic automation for repetitive knowledge work.</span></li>
-        </ul>
-      </div>
+      </section>
+
+      <section class="section-pad intro-grid">
+        <div class="section-heading reveal">
+          <p class="eyebrow" data-i18n="intro.profileEyebrow">Company profile</p>
+          <h2 data-i18n="intro.profileTitle">Premium AI transformation for complex organizations.</h2>
+        </div>
+        <p class="intro-copy reveal" data-i18n="intro.profileCopy">InferlexAI partners with enterprise teams to build end-to-end AI pipelines, customized LLM copilots, and decision intelligence products. Our work combines product-grade engineering with the boardroom clarity expected from top-tier consulting.</p>
+      </section>
     </section>
 
-    <section class="section-pad cta" id="contact" aria-labelledby="contact-title">
-      <div class="cta-card reveal">
-        <p class="eyebrow">Build with InferlexAI</p>
-        <h2 id="contact-title">Ready to turn AI strategy into operational software?</h2>
-        <p>Partner with a team built for enterprise-grade AI products, from first architecture session to secure deployment on your production stack.</p>
-        <a class="button button-primary" href="mailto:partnerships@inferlexai.com">Partner with Us</a>
-      </div>
+    <section class="page-panel" data-page="services">
+      <section class="section-pad services">
+        <div class="section-heading reveal">
+          <p class="eyebrow" data-i18n="services.eyebrow">Services</p>
+          <h2 data-i18n="services.title">Focused practices for AI-powered operating leverage.</h2>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <video autoplay loop muted playsinline aria-hidden="true">
+              <source src="assets/videos/industrial-ai.mp4" type="video/mp4">
+              Add your industrial AI service video at assets/videos/industrial-ai.mp4.
+            </video>
+            <div class="service-content">
+              <span>01</span>
+              <h3 data-i18n="services.card1Title">Industrial AI &amp; Smart Manufacturing</h3>
+              <p data-i18n="services.card1Copy">Custom coding agents for machine tools, production line optimization, predictive maintenance, and machine learning systems that strengthen supply chain resilience.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <video autoplay loop muted playsinline aria-hidden="true">
+              <source src="assets/videos/enterprise-bi.mp4" type="video/mp4">
+              Add your enterprise BI service video at assets/videos/enterprise-bi.mp4.
+            </video>
+            <div class="service-content">
+              <span>02</span>
+              <h3 data-i18n="services.card2Title">Enterprise Intelligence &amp; BI</h3>
+              <p data-i18n="services.card2Copy">Executive dashboards, predictive revenue visualization, real-time market analytics, and modernized data infrastructure for faster leadership decisions.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <video autoplay loop muted playsinline aria-hidden="true">
+              <source src="assets/videos/agentic-workflows.mp4" type="video/mp4">
+              Add your agentic workflows video at assets/videos/agentic-workflows.mp4.
+            </video>
+            <div class="service-content">
+              <span>03</span>
+              <h3 data-i18n="services.card3Title">Agentic Workflows &amp; Workforce Optimization</h3>
+              <p data-i18n="services.card3Copy">AI-driven resource allocation, back-office automation, employee management intelligence, and customized LLM copilots integrated across the enterprise.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <video autoplay loop muted playsinline aria-hidden="true">
+              <source src="assets/videos/custom-ai-engineering.mp4" type="video/mp4">
+              Add your custom AI engineering video at assets/videos/custom-ai-engineering.mp4.
+            </video>
+            <div class="service-content">
+              <span>04</span>
+              <h3 data-i18n="services.card4Title">Custom AI Software Engineering</h3>
+              <p data-i18n="services.card4Copy">Secure RAG systems for proprietary corporate data and scalable AI applications delivered from prototype through production deployment.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <section class="page-panel" data-page="approach">
+      <section class="section-pad approach">
+        <div class="section-heading reveal">
+          <p class="eyebrow" data-i18n="approach.eyebrow">Approach</p>
+          <h2 data-i18n="approach.title">From strategic ambition to deployed AI capability.</h2>
+        </div>
+        <div class="process-grid">
+          <article class="process-card reveal">
+            <span data-i18n="approach.step1">Discover</span>
+            <h3 data-i18n="approach.step1Title">Map enterprise leverage points</h3>
+            <p data-i18n="approach.step1Copy">We identify workflows, data assets, and decision cycles where AI can produce measurable operational or revenue impact.</p>
+          </article>
+          <article class="process-card reveal">
+            <span data-i18n="approach.step2">Design</span>
+            <h3 data-i18n="approach.step2Title">Architect secure AI systems</h3>
+            <p data-i18n="approach.step2Copy">We define the data architecture, agent behavior, governance controls, and user experience before build work begins.</p>
+          </article>
+          <article class="process-card reveal">
+            <span data-i18n="approach.step3">Deploy</span>
+            <h3 data-i18n="approach.step3Title">Ship production-grade software</h3>
+            <p data-i18n="approach.step3Copy">We move beyond demos with hardened frontends, scalable pipelines, observability, and change management for adoption.</p>
+          </article>
+        </div>
+
+        <figure class="flow-figure reveal">
+          <img data-flow-image src="assets/images/flow-eng.png" alt="Discover, Design, Deploy process flow for enterprise AI projects.">
+          <figcaption data-i18n="approach.flowCaption">Delivery flow linking discover, design, and deploy into one accountable implementation cycle.</figcaption>
+        </figure>
+      </section>
+    </section>
+
+    <section class="page-panel" data-page="outcomes">
+      <section class="section-pad outcomes">
+        <div class="outcomes-card reveal">
+          <div>
+            <p class="eyebrow" data-i18n="outcomes.eyebrow">Projected Outcomes</p>
+            <h2 data-i18n="outcomes.title">Program-level impact estimates you can plan against.</h2>
+            <p class="outcomes-intro" data-i18n="outcomes.copy">Indicative ranges below are based on benchmarked delivery patterns across manufacturing, enterprise operations, and data modernization programs.</p>
+          </div>
+          <ul class="metric-list">
+            <li><strong data-i18n="outcomes.m1Value">8-15% OEE uplift</strong><span data-i18n="outcomes.m1Label">Factory throughput gain from AI-assisted machine optimization.</span></li>
+            <li><strong data-i18n="outcomes.m2Value">18-30% downtime reduction</strong><span data-i18n="outcomes.m2Label">Predictive maintenance programs reducing unplanned stoppages.</span></li>
+            <li><strong data-i18n="outcomes.m3Value">20-35% faster planning cycles</strong><span data-i18n="outcomes.m3Label">Automated reporting and forecasting for strategy teams.</span></li>
+            <li><strong data-i18n="outcomes.m4Value">15-25% manual workload reduction</strong><span data-i18n="outcomes.m4Label">Agentic copilots handling repetitive analysis and operations tasks.</span></li>
+            <li><strong data-i18n="outcomes.m5Value">2-4 month targeted payback</strong><span data-i18n="outcomes.m5Label">Focused AI pilots with clear cost-out or revenue-linked KPIs.</span></li>
+            <li><strong data-i18n="outcomes.m6Value">5-12% forecast accuracy improvement</strong><span data-i18n="outcomes.m6Label">Unified BI stack for demand, revenue, and supply risk prediction.</span></li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <section class="page-panel" data-page="contact">
+      <section class="section-pad cta">
+        <div class="cta-card reveal">
+          <p class="eyebrow" data-i18n="contact.eyebrow">Build with InferlexAI</p>
+          <h2 data-i18n="contact.title">Ready to turn AI strategy into operational software?</h2>
+          <p data-i18n="contact.copy">Partner with a team built for enterprise-grade AI products, from first architecture session to secure deployment on your production stack.</p>
+          <a class="button button-primary" href="mailto:partnerships@inferlexai.com" data-i18n="common.partner">Partner with Us</a>
+        </div>
+      </section>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span data-year>2026</span> InferlexAI. All rights reserved.</p>
+    <p><span data-i18n="footer.copy">All rights reserved.</span> &copy; <span data-year>2026</span> InferlexAI.</p>
     <a href="https://www.inferlexai.com">www.inferlexai.com</a>
   </footer>
 
