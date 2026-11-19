@@ -18,6 +18,7 @@ const languageOptions = Array.from(document.querySelectorAll("[data-lang-option]
 const currentLanguageLabel = document.querySelector("[data-current-language]");
 const flowImage = document.querySelector("[data-flow-image]");
 const i18nNodes = Array.from(document.querySelectorAll("[data-i18n]"));
+const teamPortraits = Array.from(document.querySelectorAll(".team-portrait img"));
 const flowImageByLang = {
   en: "assets/images/flow-eng.png",
   "zh-CN": "assets/images/flow-chn-simple.png",
@@ -87,6 +88,15 @@ const translations = {
     "contact.eyebrow": "Build with InferlexAI",
     "contact.title": "Ready to turn AI strategy into operational software?",
     "contact.copy": "Partner with a team built for enterprise-grade AI products, from first architecture session to secure deployment on your production stack.",
+    "team.eyebrow": "Our Team",
+    "team.title": "Meet the people building InferlexAI.",
+    "team.copy": "A multidisciplinary team combining strategy, AI research, and production engineering.",
+    "team.junxiong.role": "Principal Scientist",
+    "team.junxiong.bio": "PhD in Operations Management from USC Marshall and a bachelor's degree in Management from Shanghai Jiao Tong University. Leads matching, pricing, mechanism design, strategy switching, and ROI methodology.",
+    "team.kafai.role": "CTO",
+    "team.kafai.bio": "Master's in Artificial Intelligence from The Hong Kong Polytechnic University. Delivers NLP and LLM solutions for enterprise and banking clients, with a focus on AI-generated video.",
+    "team.leonardo.role": "Principal Engineer",
+    "team.leonardo.bio": "Bachelor's degree in Computer Science from The Chinese University of Hong Kong. Production AI experience across computer vision, Agentic GenAI, and AWS- and Azure-based RAG. Leads edge-computing pipelines and the LLM decision layer.",
     "footer.copy": "All rights reserved.",
     "form.title": "Contact Us",
     "form.name": "Name*",
@@ -167,6 +177,15 @@ const translations = {
     "contact.eyebrow": "与英智元共建",
     "contact.title": "准备把 AI 战略变成真实生产系统了吗？",
     "contact.copy": "从首轮架构工作坊到生产部署，我们为你提供企业级 AI 产品化交付团队。",
+    "team.eyebrow": "团队成员",
+    "team.title": "认识共建 InferlexAI 的团队。",
+    "team.copy": "团队融合战略、人工智能研究与生产级工程能力。",
+    "team.junxiong.role": "首席科学家",
+    "team.junxiong.bio": "南加州大学马歇尔商学院运营管理博士，上海交通大学管理学学士。负责匹配、定价、机制设计、策略切换及投资回报率（ROI）方法。",
+    "team.kafai.role": "首席技术官（CTO）",
+    "team.kafai.bio": "香港理工大学人工智能硕士。为企业及银行客户提供自然语言处理（NLP）与大语言模型（LLM）解决方案，专注于 AI 生成视频领域。",
+    "team.leonardo.role": "首席工程师",
+    "team.leonardo.bio": "香港中文大学计算机科学学士。拥有生产级 AI 经验，涵盖计算机视觉、代理式生成式 AI（Agentic GenAI），以及基于 AWS 和 Azure 的检索增强生成（RAG）技术；负责边缘计算管线及 LLM 决策层。",
     "footer.copy": "保留所有权利。",
     "form.title": "联系我们",
     "form.name": "姓名*",
@@ -247,6 +266,15 @@ const translations = {
     "contact.eyebrow": "與英智元共建",
     "contact.title": "準備把 AI 策略轉化為實際生產系統了嗎？",
     "contact.copy": "從第一場架構工作坊到上線部署，我們提供企業級 AI 產品化交付團隊。",
+    "team.eyebrow": "團隊成員",
+    "team.title": "認識共同打造 InferlexAI 的團隊。",
+    "team.copy": "團隊融合策略、人工智慧研究與生產級工程能力。",
+    "team.junxiong.role": "首席科學家",
+    "team.junxiong.bio": "南加州大學馬歇爾商學院營運管理博士，上海交通大學管理學學士。負責配對、定價、機制設計、策略轉換及投資報酬率（ROI）方法。",
+    "team.kafai.role": "技術長（CTO）",
+    "team.kafai.bio": "香港理工大學人工智慧碩士。為企業及銀行客戶提供自然語言處理（NLP）與大型語言模型（LLM）解決方案，專注於 AI 生成影片領域。",
+    "team.leonardo.role": "首席工程師",
+    "team.leonardo.bio": "香港中文大學計算機科學學士。具備生產級 AI 經驗，涵蓋電腦視覺、代理式生成式 AI（Agentic GenAI），以及基於 AWS 和 Azure 的檢索增強生成（RAG）技術；負責邊緣運算管線及 LLM 決策層。",
     "footer.copy": "版權所有。",
     "form.title": "聯絡我們",
     "form.name": "姓名*",
@@ -275,6 +303,15 @@ const recipientEmail = String.fromCharCode(...recipientChars);
 
 const currentYear = new Date().getFullYear();
 if (year) year.textContent = String(currentYear);
+
+teamPortraits.forEach((image) => {
+  const markImageLoaded = () => image.parentElement?.classList.add("has-image");
+  if (image.complete && image.naturalWidth > 0) {
+    markImageLoaded();
+  } else {
+    image.addEventListener("load", markImageLoaded, { once: true });
+  }
+});
 
 const t = (key) => {
   const dictionary = translations[currentLanguage] || translations.en;

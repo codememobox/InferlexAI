@@ -608,6 +608,92 @@ h3 {
   font-size: 1.12rem;
 }
 
+.team-section {
+  padding-top: 1rem;
+}
+
+.team-section .section-heading {
+  max-width: 760px;
+}
+
+.team-intro {
+  max-width: 620px;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.team-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel-strong);
+  box-shadow: var(--shadow);
+}
+
+.team-portrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 1.75rem;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(113, 217, 255, 0.2), transparent 55%),
+    linear-gradient(135deg, rgba(215, 181, 109, 0.2), var(--bg-elevated));
+}
+
+.team-portrait img {
+  width: clamp(9rem, 15vw, 12rem);
+  aspect-ratio: 1;
+  border: 3px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.team-avatar-fallback {
+  display: grid;
+  width: clamp(9rem, 15vw, 12rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(5, 7, 13, 0.28);
+  color: rgba(246, 248, 251, 0.82);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+}
+
+.team-portrait.has-image .team-avatar-fallback {
+  display: none;
+}
+
+.team-card-content {
+  padding: 1.35rem;
+}
+
+.team-card-content h3 {
+  margin-bottom: 0.4rem;
+}
+
+.team-card-content p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.team-card-content .team-role {
+  margin-bottom: 0.85rem;
+  color: var(--gold);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
 /* ===== Contact Modal ===== */
 .modal-shell {
   position: fixed;
@@ -776,8 +862,19 @@ h3 {
   }
 
   .service-grid,
-  .process-grid {
+  .process-grid,
+  .team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .team-card {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.7fr) 1fr;
+  }
+
+  .team-portrait {
+    height: 100%;
+    min-height: 12rem;
   }
 
   .service-card {
@@ -849,6 +946,14 @@ h3 {
 
   .field-row {
     grid-template-columns: 1fr;
+  }
+
+  .team-card {
+    display: block;
+  }
+
+  .team-portrait {
+    min-height: 0;
   }
 
   .form-meta {
